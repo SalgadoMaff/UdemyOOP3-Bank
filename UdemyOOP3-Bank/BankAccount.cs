@@ -1,14 +1,14 @@
 ﻿
+using System.Globalization;
+
 namespace UdemyOOP3_Bank {
     internal class BankAccount {
-        private int _id;
+        public int ID { get; private set; }
         public string Titular { get; set; }
-        public double Balance { get; set; }
+        private double Balance { get; set; }
 
-        public void SetId(int id) {
-            this._id = id;
-        }
 
+        
         public void Deposit(double income) {
             this.Balance += income;
         }
@@ -17,5 +17,17 @@ namespace UdemyOOP3_Bank {
             this.Balance -= 5;
         }
 
+        public BankAccount(int iD) {
+            ID = iD;
+        }
+
+        public BankAccount(string titular,int iD):this(iD) {
+            Titular = titular;
+        }
+
+        public override string ToString() {
+            return "Conta " + this.ID + $", Titular: {this.Titular}, Saldo: ${(this.Balance).ToString("F2", CultureInfo.InvariantCulture)} ";
+
+        }
     }
 }
